@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,8 +32,6 @@
             padding: 40px 20px;
         }
 
-        /* Overlay removed */
-
         .flyer-content {
             position: relative;
             z-index: 2;
@@ -42,161 +41,64 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .flyer-header {
-            display: none;
-        }
+        /* =====================================================
+           REGISTER NOW OVERLAY BUTTON
+           Adjust these CSS custom properties to move/resize
+           the clickable area over the button in your image:
+             --btn-top    : distance from top of .flyer-container
+             --btn-left   : distance from left of .flyer-container
+             --btn-width  : width of the clickable area
+             --btn-height : height of the clickable area
+           ===================================================== */
+        .register-overlay {
+            --btn-top:    85%;   /* ← move up/down  */
+            --btn-left:   50%;   /* ← move left/right (centered) */
+            --btn-width:  220px; /* ← make wider/narrower */
+            --btn-height: 55px;  /* ← make taller/shorter */
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.1;
-            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: #f0f0f0;
-            font-weight: 300;
-            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .flyer-description {
-            display: none;
-        }
-
-        .description-text {
-            font-size: 1.1rem;
-            color: #ffffff;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .register-button-container {
-            display: none;
-        }
-
-        .register-button {
-            display: inline-block;
-            padding: 16px 45px;
-            background: linear-gradient(135deg, #ff6b6b, #ff5252);
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            border: none;
+            position: absolute;
+            top:    var(--btn-top);
+            left:   var(--btn-left);
+            transform: translateX(-50%);   /* keep it horizontally centered */
+            width:  var(--btn-width);
+            height: var(--btn-height);
+            z-index: 10;
             cursor: pointer;
-        }
 
-        .register-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
-        }
+            /* Transparent by default — set to a colour to debug position */
+            background: transparent;
+            /* background: rgba(255,0,0,0.3); */  /* ← uncomment to see the overlay */
 
-        @media (max-width: 768px) {
-            .register-button {
-                padding: 14px 35px;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .register-button {
-                padding: 12px 30px;
-                font-size: 0.95rem;
-            }
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 16px 45px;
-            background: linear-gradient(135deg, #ff6b6b, #ff5252);
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
             border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            margin: 0 15px;
-            border: none;
-            cursor: pointer;
+            text-decoration: none;
+            display: block;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
-        }
-
-        .cta-button.secondary {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button.secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: white;
-        }
-
-        .bottom-accent {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .flyer-description {
-                padding: 30px 20px;
-                margin: 30px 0;
-            }
-
-            .description-text {
-                font-size: 1rem;
-            }
-
-            .cta-button {
-                padding: 14px 35px;
-                font-size: 1rem;
-                margin: 10px 10px;
-            }
+        /* Subtle pulse on hover so users know it's clickable */
+        .register-overlay:hover {
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+            transition: all 0.25s ease;
         }
     </style>
 </head>
 <body>
     <div class="flyer-container">
-        <div class="flyer-content">
-        </div>
 
-        <div class="register-button-container">
-            <a href="#" class="register-button">Register Now</a>
-        </div>
+        <!-- ✅ Transparent clickable overlay on the "Register Now" button in the image -->
+        <!-- Replace href="#" with your actual registration URL -->
+        <a  class="register-overlay"
+            href="https://YOUR-REGISTRATION-LINK-HERE.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Register Now">
+        </a>
 
+        <div class="flyer-content"></div>
         <div class="bottom-accent"></div>
     </div>
 </body>
